@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DotChroma — La couleur exacte de vos photos</title>
-  <meta name="description" content="Pipette couleur pour iPhone et iPad. Échantillonnez n'importe quel pixel, obtenez son nom en 13 langues, sa palette dominante, ses codes HEX/RVB/TSL et son contraste WCAG. Tout sur l'appareil.">
-  <meta property="og:title" content="DotChroma — La couleur exacte de vos photos">
-  <meta property="og:description" content="Pipette couleur pour iPhone et iPad. Noms en 13 langues, palette dominante, codes développeur, contraste WCAG. 100 % sur l'appareil.">
+  <title>DotChroma — The exact color in your photos</title>
+  <meta name="description" content="Color picker for iPhone and iPad. Sample any pixel and get its name in 13 languages, its dominant palette, HEX/RGB/HSL codes and WCAG contrast. Entirely on device.">
+  <meta property="og:title" content="DotChroma — The exact color in your photos">
+  <meta property="og:description" content="Color picker for iPhone and iPad. Names in 13 languages, dominant palette, developer codes, WCAG contrast. 100% on device.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/app-icon.png">
+  <link rel="alternate" hreflang="en" href="https://xerxex52.github.io/DotChroma-site/">
+  <link rel="alternate" hreflang="fr" href="https://xerxex52.github.io/DotChroma-site/">
+  <link rel="alternate" hreflang="de" href="https://xerxex52.github.io/DotChroma-site/">
+  <link rel="alternate" hreflang="es" href="https://xerxex52.github.io/DotChroma-site/">
   <link rel="icon" type="image/png" href="assets/app-icon.png">
   <style>
     :root {
       color-scheme: dark;
       --white: #f6f8f0;
       --lime: #b8e000;
-      --lime-soft: #d4f25e;
       --muted: #9ea296;
       --bg: #0a0a0a;
       --bg-soft: #101210;
@@ -52,44 +55,46 @@
     .accent { color: var(--lime); }
     .lead, .sub { color: var(--muted); font-size: 1.1rem; margin: 0 0 28px; }
     .kicker, .eyebrow {
-      display: inline-block;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-size: .74rem;
-      font-weight: 700;
-      color: var(--lime);
-      margin-bottom: 14px;
+      display: inline-block; text-transform: uppercase; letter-spacing: .16em;
+      font-size: .74rem; font-weight: 700; color: var(--lime); margin-bottom: 14px;
     }
 
-    /* En-tête */
     .site-header {
       position: sticky; top: 0; z-index: 40;
       border-bottom: 1px solid rgba(184, 224, 0, .1);
       background: rgba(10, 10, 10, .82);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     }
-    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
     .brand img { width: 42px; height: 42px; border-radius: 12px; box-shadow: 0 10px 30px rgba(184, 224, 0, .18); }
     .brand span { font-size: 1.16rem; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
     .nav-links { display: flex; align-items: center; gap: 24px; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: .95rem; font-weight: 600; }
     .nav-links a:hover { color: var(--white); }
+    .language {
+      appearance: none; -webkit-appearance: none;
+      background: var(--panel) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='%23b8e000' stroke-width='1.6'><path d='M1 1.5 6 6.5 11 1.5'/></svg>") no-repeat right 12px center;
+      background-size: 11px;
+      border: 1px solid var(--line); border-radius: 999px;
+      color: var(--white); font: inherit; font-size: .9rem; font-weight: 600;
+      padding: 8px 34px 8px 14px; cursor: pointer;
+    }
+    .language:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-    /* Boutons */
     .actions { display: flex; flex-wrap: wrap; gap: 14px; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       padding: 14px 26px; border-radius: 999px;
       font-weight: 700; font-size: 1rem; text-decoration: none;
-      transition: transform .15s ease, opacity .15s ease;
+      transition: transform .15s ease;
     }
     .btn:hover { transform: translateY(-2px); }
     .btn-primary { background: var(--lime); color: #0a0a0a; }
     .btn-secondary { border: 1px solid var(--line); color: var(--white); }
 
-    /* Héro */
     .hero { position: relative; isolation: isolate; overflow: hidden; padding: 88px 0 76px; }
     .hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; }
     .hero::before { width: 620px; height: 620px; top: -360px; right: -170px; background: rgba(184, 224, 0, .09); }
@@ -100,29 +105,22 @@
     .proof { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 10px 26px; color: var(--muted); font-size: .94rem; }
     .proof li::before { content: "▪ "; color: var(--lime); font-weight: 700; }
 
-    /* Nuancier vivant */
     .swatches { display: flex; gap: 10px; margin: 30px 0 0; flex-wrap: wrap; }
-    .swatch { width: 62px; border-radius: 14px; padding: 8px 0 7px; text-align: center; font-size: .62rem; font-weight: 700; letter-spacing: .04em; }
-    .swatch span { display: block; opacity: .82; }
+    .swatch { width: 74px; border-radius: 14px; padding: 9px 4px 8px; text-align: center; font-size: .64rem; font-weight: 700; letter-spacing: .03em; }
+    .swatch code { display: block; opacity: .8; font-size: .58rem; font-family: ui-monospace, SFMono-Regular, monospace; }
 
-    /* Cartes */
     .intro { max-width: 640px; margin-bottom: 46px; }
     .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); gap: 22px; }
-    .card {
-      background: var(--panel); border: 1px solid var(--line);
-      border-radius: var(--radius); padding: 30px 28px;
-    }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; }
     .card h3 { margin: 0 0 10px; font-size: 1.18rem; letter-spacing: -.01em; }
     .card p { margin: 0; color: var(--muted); font-size: .98rem; }
     .icon { font-size: 1.7rem; margin-bottom: 14px; }
 
-    /* Galerie */
     .showcase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px; }
     .showcase-grid figure { margin: 0; }
     .showcase-grid img { border-radius: 26px; border: 1px solid var(--line); box-shadow: var(--shadow); }
     .showcase-grid figcaption { margin-top: 14px; color: var(--muted); font-size: .92rem; text-align: center; }
 
-    /* Tarifs */
     .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; align-items: start; }
     .plan { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 34px 30px; }
     .plan.featured { border-color: rgba(184, 224, 0, .45); box-shadow: 0 0 0 1px rgba(184, 224, 0, .18), var(--shadow); }
@@ -132,7 +130,6 @@
     .plan ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 11px; color: var(--muted); font-size: .97rem; }
     .plan li::before { content: "✓"; color: var(--lime); font-weight: 800; margin-right: 10px; }
 
-    /* Note lumière */
     .notice {
       border: 1px solid var(--line); border-radius: var(--radius);
       padding: 34px 32px; background: var(--panel);
@@ -142,7 +139,6 @@
     .notice p { margin: 0; color: var(--muted); }
     .notice strong { color: var(--white); }
 
-    /* Pied de page */
     .site-footer { border-top: 1px solid rgba(184, 224, 0, .1); padding: 46px 0; color: var(--muted); font-size: .92rem; }
     .footer-grid { display: flex; flex-wrap: wrap; gap: 18px 32px; justify-content: space-between; align-items: center; }
     .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
@@ -153,25 +149,35 @@
       .hero-grid { grid-template-columns: 1fr; }
       .hero-shot-wrap { order: -1; }
       .section { padding: 72px 0; }
-      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links { display: none; }
       .notice { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body>
+<body id="top">
 
   <header class="site-header">
     <div class="shell nav">
-      <a class="brand" href="./" aria-label="DotChroma, accueil">
-        <img src="assets/app-icon.png" alt="">
+      <a class="brand" href="#top" aria-label="DotChroma">
+        <img src="assets/app-icon.png" alt="" width="42" height="42">
         <span>DotChroma</span>
       </a>
-      <nav class="nav-links" aria-label="Navigation principale">
-        <a href="#fonctionnalites">Fonctionnalités</a>
-        <a href="#apercu">Aperçu</a>
-        <a href="#tarifs">Tarifs</a>
-        <a href="support.html">Assistance</a>
-      </nav>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Main">
+          <a href="#features" data-i18n="navFeatures">Features</a>
+          <a href="#preview" data-i18n="navPreview">Preview</a>
+          <a href="#pricing" data-i18n="navPricing">Pricing</a>
+        </nav>
+        <label>
+          <span class="visually-hidden" data-i18n="languageLabel">Language</span>
+          <select class="language" id="language" aria-label="Language">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="es">Español</option>
+          </select>
+        </label>
+      </div>
     </div>
   </header>
 
@@ -179,96 +185,96 @@
     <section class="hero">
       <div class="shell hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Conçue pour iPhone et iPad</span>
-          <h1>La couleur exacte<br><span class="accent">de vos photos.</span></h1>
-          <p class="lead">Touchez n'importe quel pixel : DotChroma vous donne sa teinte, son nom dans votre langue, ses codes développeur et son contraste WCAG. Sans compte, sans cloud, sans publicité.</p>
+          <p class="eyebrow" data-i18n="heroKicker">Made for iPhone and iPad</p>
+          <h1 data-i18n="heroTitle">The exact color<br><span class="accent">in your photos.</span></h1>
+          <p class="lead" data-i18n="heroBody">Tap any pixel: DotChroma gives you its shade, its name in your language, its developer codes and its WCAG contrast. No account, no cloud, no ads.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#tarifs">Découvrir DotChroma</a>
-            <a class="btn btn-secondary" href="#fonctionnalites">Voir les fonctionnalités</a>
+            <a class="btn btn-primary" href="#pricing" data-i18n="heroPrimary">Discover DotChroma</a>
+            <a class="btn btn-secondary" href="#features" data-i18n="heroSecondary">See the features</a>
           </div>
           <ul class="proof">
-            <li>13 langues</li>
-            <li>100 % sur l'appareil</li>
-            <li>Achat unique, sans abonnement</li>
+            <li data-i18n="trust1">13 languages</li>
+            <li data-i18n="trust2">100% on device</li>
+            <li data-i18n="trust3">One-time purchase</li>
           </ul>
-          <div class="swatches" aria-label="Exemples de couleurs échantillonnées">
-            <div class="swatch" style="background:#e1b56c;color:#2b1d05">Tan<span>#E1B56C</span></div>
-            <div class="swatch" style="background:#67594a;color:#f6f8f0">Taupe<span>#67594A</span></div>
-            <div class="swatch" style="background:#387ac8;color:#f6f8f0">Bleu<span>#387AC8</span></div>
-            <div class="swatch" style="background:#6a3115;color:#f6f8f0">Châtaigne<span>#6A3115</span></div>
+          <div class="swatches" aria-hidden="true">
+            <div class="swatch" style="background:#e1b56c;color:#2b1d05"><span data-i18n="swatch1">Tan</span><code>#E1B56C</code></div>
+            <div class="swatch" style="background:#67594a;color:#f6f8f0"><span data-i18n="swatch2">Dark Taupe</span><code>#67594A</code></div>
+            <div class="swatch" style="background:#387ac8;color:#f6f8f0"><span data-i18n="swatch3">Windows Blue</span><code>#387AC8</code></div>
+            <div class="swatch" style="background:#6a3115;color:#f6f8f0"><span data-i18n="swatch4">Chestnut</span><code>#6A3115</code></div>
           </div>
         </div>
         <div class="hero-shot-wrap">
-          <img class="marketing-shot" src="assets/capture-hero.png" alt="DotChroma sur iPhone : une photo de coucher de soleil, la couleur échantillonnée nommée « tan » avec ses codes HEX, RVB et TSL">
+          <img class="marketing-shot" src="assets/capture-hero.png" alt="DotChroma on iPhone" width="330" height="717">
         </div>
       </div>
     </section>
 
-    <section class="section section-soft" id="fonctionnalites">
+    <section class="section section-soft" id="features">
       <div class="shell">
         <div class="intro">
-          <p class="kicker">Une pipette, tout le travail autour</p>
-          <h2>Du pixel au code, sans quitter l'app.</h2>
-          <p class="sub">DotChroma ne se contente pas de lire une couleur : elle la nomme, l'entoure de ses voisines, la traduit en code et vérifie qu'elle reste lisible.</p>
+          <p class="kicker" data-i18n="featuresKicker">One eyedropper, all the work around it</p>
+          <h2 data-i18n="featuresTitle">From pixel to code, without leaving the app.</h2>
+          <p class="sub" data-i18n="featuresBody">DotChroma does not just read a color: it names it, surrounds it with its neighbours, turns it into code and checks that it stays readable.</p>
         </div>
         <div class="benefits">
           <article class="card">
             <div class="icon">🎯</div>
-            <h3>Échantillonnage précis</h3>
-            <p>Importez une photo ou prenez-la sur le vif, puis touchez un point. La loupe cible le pixel exact ; le mode lissé moyenne une petite zone pour réduire le bruit.</p>
+            <h3 data-i18n="f1Title">Precise sampling</h3>
+            <p data-i18n="f1Body">Import a photo or take one on the spot, then tap a point. The magnifier targets the exact pixel; smoothed mode averages a small area to reduce noise.</p>
           </article>
           <article class="card">
             <div class="icon">🎨</div>
-            <h3>Palette dominante</h3>
-            <p>Les teintes principales d'une image sont extraites automatiquement. Touchez une pastille pour en faire la couleur active.</p>
+            <h3 data-i18n="f2Title">Dominant palette</h3>
+            <p data-i18n="f2Body">The main hues of an image are extracted automatically. Tap a swatch to make it the active color.</p>
           </article>
           <article class="card">
             <div class="icon">🗣️</div>
-            <h3>Des noms justes, en 13 langues</h3>
-            <p>« Taupe », pas « vert ». Palette xkcd localisée ou noms CSS standards, au choix — en français, anglais, allemand, espagnol et neuf autres langues.</p>
+            <h3 data-i18n="f3Title">Names that fit, in 13 languages</h3>
+            <p data-i18n="f3Body">“Taupe”, not “green”. Localized xkcd palette or standard CSS names, your choice — in English, French, German, Spanish and nine more languages.</p>
           </article>
           <article class="card">
             <div class="icon">◐</div>
-            <h3>Contraste WCAG</h3>
-            <p>Ratio sur fond blanc et sur fond noir, conformité AA et AAA selon WCAG 2.1. De quoi trancher une question d'accessibilité en une seconde.</p>
+            <h3 data-i18n="f4Title">WCAG contrast</h3>
+            <p data-i18n="f4Body">Ratio on white and on black, AA and AAA compliance per WCAG 2.1. Enough to settle an accessibility question in a second.</p>
           </article>
           <article class="card">
             <div class="icon">&lt;/&gt;</div>
-            <h3>Codes développeur</h3>
-            <p>HEX, RVB, TSL, SwiftUI, UIKit, CSS et SCSS. Copiez une valeur d'un toucher, ou exportez toute la palette en texte ou CSV.</p>
+            <h3 data-i18n="f5Title">Developer codes</h3>
+            <p data-i18n="f5Body">HEX, RGB, HSL, SwiftUI, UIKit, CSS and SCSS. Copy a value with one tap, or export the whole palette as text or CSV.</p>
           </article>
           <article class="card">
             <div class="icon">🔒</div>
-            <h3>Rien ne sort de l'appareil</h3>
-            <p>Aucune image envoyée sur internet. Pas de compte, pas de publicité, pas de traceur. Tout le traitement est local.</p>
+            <h3 data-i18n="f6Title">Nothing leaves your device</h3>
+            <p data-i18n="f6Body">No image sent to the internet. No account, no ads, no tracker. All processing is local.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="apercu">
+    <section class="section" id="preview">
       <div class="shell">
         <div class="intro">
-          <p class="kicker">Aperçu</p>
-          <h2>Une interface sombre, pensée pour la couleur.</h2>
-          <p class="sub">Un fond neutre et sans reflet : rien ne vient fausser la teinte que vous regardez.</p>
+          <p class="kicker" data-i18n="previewKicker">Preview</p>
+          <h2 data-i18n="previewTitle">A dark interface, built for color.</h2>
+          <p class="sub" data-i18n="previewBody">A neutral, glare-free background: nothing distorts the shade you are looking at.</p>
         </div>
-        <div class="showcase-grid" aria-label="Captures d'écran de l'application">
+        <div class="showcase-grid">
           <figure>
-            <img src="assets/capture-palette.png" alt="Palette dominante extraite d'une photo d'escalier d'honneur">
-            <figcaption>Palette dominante</figcaption>
+            <img src="assets/capture-palette.png" alt="Dominant palette" loading="lazy">
+            <figcaption data-i18n="shot1">Dominant palette</figcaption>
           </figure>
           <figure>
-            <img src="assets/capture-harmonies.png" alt="Neuf harmonies de couleurs générées depuis un bleu azur">
-            <figcaption>Neuf harmonies</figcaption>
+            <img src="assets/capture-harmonies.png" alt="Color harmonies" loading="lazy">
+            <figcaption data-i18n="shot2">Nine harmonies</figcaption>
           </figure>
           <figure>
-            <img src="assets/capture-codes.png" alt="Export de code SwiftUI pour la couleur échantillonnée">
-            <figcaption>Codes développeur</figcaption>
+            <img src="assets/capture-codes.png" alt="Developer code export" loading="lazy">
+            <figcaption data-i18n="shot3">Developer codes</figcaption>
           </figure>
           <figure>
-            <img src="assets/capture-contraste.png" alt="Vérification du contraste WCAG avec badges AA">
-            <figcaption>Contraste WCAG</figcaption>
+            <img src="assets/capture-contraste.png" alt="WCAG contrast check" loading="lazy">
+            <figcaption data-i18n="shot4">WCAG contrast</figcaption>
           </figure>
         </div>
       </div>
@@ -278,43 +284,42 @@
       <div class="shell">
         <div class="notice">
           <div class="icon">💡</div>
-          <p><strong>La lumière compte, et c'est normal.</strong><br>
-          La couleur détectée dépend de la lumière ambiante, de la balance des blancs de votre photo et des réglages de votre écran. Le même mur paraîtra différent à l'ombre, en plein soleil ou sous une lampe chaude. Ce n'est pas un défaut de l'app : DotChroma lit fidèlement les pixels de votre image. Pour comparer à une peinture, un tissu ou un échantillon réel, échantillonnez sous une lumière stable.</p>
+          <p data-i18n="noticeBody"><strong>Lighting matters, and that is normal.</strong><br>The detected color depends on ambient light, the white balance of your photo and your display settings. The same wall looks different in shade, in direct sunlight or under a warm lamp. That is not a flaw in the app: DotChroma reads the pixels of your image faithfully. To match a paint, a fabric or a physical sample, sample under stable lighting.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="tarifs">
+    <section class="section" id="pricing">
       <div class="shell">
         <div class="intro">
-          <p class="kicker">Tarifs</p>
-          <h2>Gratuit pour l'essentiel. Un seul paiement pour le reste.</h2>
-          <p class="sub">Pas d'abonnement, pas de compte à créer, pas de publicité.</p>
+          <p class="kicker" data-i18n="pricingKicker">Pricing</p>
+          <h2 data-i18n="pricingTitle">Free for the essentials. One payment for the rest.</h2>
+          <p class="sub" data-i18n="pricingBody">No subscription, no account to create, no advertising.</p>
         </div>
         <div class="pricing">
           <article class="plan">
-            <h3>Gratuit</h3>
+            <h3 data-i18n="freeTitle">Free</h3>
             <p class="price">0 €</p>
-            <p class="sub" style="margin:0">10 imports d'images par mois</p>
+            <p class="sub" style="margin:0" data-i18n="freeSub">10 image imports per month</p>
             <ul>
-              <li>Échantillonnage illimité sur les images chargées</li>
-              <li>Noms de couleurs dans 13 langues</li>
-              <li>Palette dominante et historique</li>
-              <li>Codes HEX, RVB et TSL</li>
-              <li>Contraste WCAG complet</li>
-              <li>Une harmonie de couleurs</li>
+              <li data-i18n="free1">Unlimited sampling on loaded images</li>
+              <li data-i18n="free2">Color names in 13 languages</li>
+              <li data-i18n="free3">Dominant palette and history</li>
+              <li data-i18n="free4">HEX, RGB and HSL codes</li>
+              <li data-i18n="free5">Full WCAG contrast check</li>
+              <li data-i18n="free6">One color harmony</li>
             </ul>
           </article>
           <article class="plan featured">
             <h3>DotChroma Pro</h3>
-            <p class="price">4,99 € <small>une fois</small></p>
-            <p class="sub" style="margin:0">Tout le gratuit, sans limite</p>
+            <p class="price">4,99 € <small data-i18n="once">once</small></p>
+            <p class="sub" style="margin:0" data-i18n="proSub">Everything in Free, without the limit</p>
             <ul>
-              <li>Imports d'images illimités</li>
-              <li>Les neuf harmonies de couleurs</li>
-              <li>Export SwiftUI, UIKit, CSS et SCSS</li>
-              <li>Export complet des palettes en texte ou CSV</li>
-              <li>Achat unique, restaurable sur vos appareils</li>
+              <li data-i18n="pro1">Unlimited image imports</li>
+              <li data-i18n="pro2">All nine color harmonies</li>
+              <li data-i18n="pro3">SwiftUI, UIKit, CSS and SCSS export</li>
+              <li data-i18n="pro4">Full palette export as text or CSV</li>
+              <li data-i18n="pro5">One-time purchase, restorable on your devices</li>
             </ul>
           </article>
         </div>
@@ -323,9 +328,9 @@
 
     <section class="section section-soft">
       <div class="shell" style="text-align:center">
-        <h2>Aussi à l'aise sur iPad.</h2>
-        <p class="sub" style="margin-inline:auto;max-width:52ch">Sur grand écran, l'image et le panneau couleur cohabitent : vous échantillonnez d'un côté, vous lisez les valeurs de l'autre.</p>
-        <img src="assets/capture-ipad.png" alt="DotChroma sur iPad : la photo à gauche, le panneau de couleur détectée à droite" style="border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin:36px auto 0;max-width:820px">
+        <h2 data-i18n="ipadTitle">Just as comfortable on iPad.</h2>
+        <p class="sub" style="margin-inline:auto;max-width:52ch" data-i18n="ipadBody">On a large screen the image and the color panel sit side by side: you sample on one side and read the values on the other.</p>
+        <img src="assets/capture-ipad.png" alt="DotChroma on iPad" loading="lazy" style="border-radius:26px;border:1px solid var(--line);box-shadow:var(--shadow);margin:36px auto 0;max-width:820px">
       </div>
     </section>
   </main>
@@ -333,13 +338,190 @@
   <footer class="site-footer">
     <div class="shell footer-grid">
       <div>© 2026 Simorgh — DotChroma</div>
-      <nav class="footer-links" aria-label="Liens de bas de page">
-        <a href="support.html">Assistance</a>
-        <a href="privacy.html">Confidentialité</a>
-        <a href="mailto:sramezani52@gmail.com">Nous écrire</a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="support.html" data-i18n="supportLink">Support</a>
+        <a href="privacy.html" data-i18n="privacyLink">Privacy</a>
+        <a href="mailto:sramezani52@gmail.com" data-i18n="contactLink">Contact us</a>
       </nav>
     </div>
   </footer>
+
+  <script>
+    // Les noms de couleurs du nuancier viennent des traductions livrées avec l'app
+    // (XkcdColorNames.strings) : le site montre exactement ce que l'utilisateur verra.
+    const translations = {
+      en: {
+        navFeatures: "Features", navPreview: "Preview", navPricing: "Pricing", languageLabel: "Language",
+        heroKicker: "Made for iPhone and iPad",
+        heroTitle: "The exact color<br><span class=\"accent\">in your photos.</span>",
+        heroBody: "Tap any pixel: DotChroma gives you its shade, its name in your language, its developer codes and its WCAG contrast. No account, no cloud, no ads.",
+        heroPrimary: "Discover DotChroma", heroSecondary: "See the features",
+        trust1: "13 languages", trust2: "100% on device", trust3: "One-time purchase",
+        swatch1: "Tan", swatch2: "Dark Taupe", swatch3: "Windows Blue", swatch4: "Chestnut",
+        featuresKicker: "One eyedropper, all the work around it",
+        featuresTitle: "From pixel to code, without leaving the app.",
+        featuresBody: "DotChroma does not just read a color: it names it, surrounds it with its neighbours, turns it into code and checks that it stays readable.",
+        f1Title: "Precise sampling", f1Body: "Import a photo or take one on the spot, then tap a point. The magnifier targets the exact pixel; smoothed mode averages a small area to reduce noise.",
+        f2Title: "Dominant palette", f2Body: "The main hues of an image are extracted automatically. Tap a swatch to make it the active color.",
+        f3Title: "Names that fit, in 13 languages", f3Body: "“Taupe”, not “green”. Localized xkcd palette or standard CSS names, your choice — in English, French, German, Spanish and nine more languages.",
+        f4Title: "WCAG contrast", f4Body: "Ratio on white and on black, AA and AAA compliance per WCAG 2.1. Enough to settle an accessibility question in a second.",
+        f5Title: "Developer codes", f5Body: "HEX, RGB, HSL, SwiftUI, UIKit, CSS and SCSS. Copy a value with one tap, or export the whole palette as text or CSV.",
+        f6Title: "Nothing leaves your device", f6Body: "No image sent to the internet. No account, no ads, no tracker. All processing is local.",
+        previewKicker: "Preview", previewTitle: "A dark interface, built for color.",
+        previewBody: "A neutral, glare-free background: nothing distorts the shade you are looking at.",
+        shot1: "Dominant palette", shot2: "Nine harmonies", shot3: "Developer codes", shot4: "WCAG contrast",
+        noticeBody: "<strong>Lighting matters, and that is normal.</strong><br>The detected color depends on ambient light, the white balance of your photo and your display settings. The same wall looks different in shade, in direct sunlight or under a warm lamp. That is not a flaw in the app: DotChroma reads the pixels of your image faithfully. To match a paint, a fabric or a physical sample, sample under stable lighting.",
+        pricingKicker: "Pricing", pricingTitle: "Free for the essentials. One payment for the rest.",
+        pricingBody: "No subscription, no account to create, no advertising.",
+        freeTitle: "Free", freeSub: "10 image imports per month",
+        free1: "Unlimited sampling on loaded images", free2: "Color names in 13 languages",
+        free3: "Dominant palette and history", free4: "HEX, RGB and HSL codes",
+        free5: "Full WCAG contrast check", free6: "One color harmony",
+        once: "once", proSub: "Everything in Free, without the limit",
+        pro1: "Unlimited image imports", pro2: "All nine color harmonies",
+        pro3: "SwiftUI, UIKit, CSS and SCSS export", pro4: "Full palette export as text or CSV",
+        pro5: "One-time purchase, restorable on your devices",
+        ipadTitle: "Just as comfortable on iPad.",
+        ipadBody: "On a large screen the image and the color panel sit side by side: you sample on one side and read the values on the other.",
+        supportLink: "Support", privacyLink: "Privacy", contactLink: "Contact us"
+      },
+      fr: {
+        navFeatures: "Fonctionnalités", navPreview: "Aperçu", navPricing: "Tarifs", languageLabel: "Langue",
+        heroKicker: "Conçue pour iPhone et iPad",
+        heroTitle: "La couleur exacte<br><span class=\"accent\">de vos photos.</span>",
+        heroBody: "Touchez n'importe quel pixel : DotChroma vous donne sa teinte, son nom dans votre langue, ses codes développeur et son contraste WCAG. Sans compte, sans cloud, sans publicité.",
+        heroPrimary: "Découvrir DotChroma", heroSecondary: "Voir les fonctionnalités",
+        trust1: "13 langues", trust2: "100 % sur l'appareil", trust3: "Achat unique",
+        swatch1: "Tan", swatch2: "Taupe Foncé", swatch3: "Fenêtres bleues", swatch4: "Châtaigne",
+        featuresKicker: "Une pipette, tout le travail autour",
+        featuresTitle: "Du pixel au code, sans quitter l'app.",
+        featuresBody: "DotChroma ne se contente pas de lire une couleur : elle la nomme, l'entoure de ses voisines, la traduit en code et vérifie qu'elle reste lisible.",
+        f1Title: "Échantillonnage précis", f1Body: "Importez une photo ou prenez-la sur le vif, puis touchez un point. La loupe cible le pixel exact ; le mode lissé moyenne une petite zone pour réduire le bruit.",
+        f2Title: "Palette dominante", f2Body: "Les teintes principales d'une image sont extraites automatiquement. Touchez une pastille pour en faire la couleur active.",
+        f3Title: "Des noms justes, en 13 langues", f3Body: "« Taupe », pas « vert ». Palette xkcd localisée ou noms CSS standards, au choix — en français, anglais, allemand, espagnol et neuf autres langues.",
+        f4Title: "Contraste WCAG", f4Body: "Ratio sur fond blanc et sur fond noir, conformité AA et AAA selon WCAG 2.1. De quoi trancher une question d'accessibilité en une seconde.",
+        f5Title: "Codes développeur", f5Body: "HEX, RVB, TSL, SwiftUI, UIKit, CSS et SCSS. Copiez une valeur d'un toucher, ou exportez toute la palette en texte ou CSV.",
+        f6Title: "Rien ne sort de l'appareil", f6Body: "Aucune image envoyée sur internet. Pas de compte, pas de publicité, pas de traceur. Tout le traitement est local.",
+        previewKicker: "Aperçu", previewTitle: "Une interface sombre, pensée pour la couleur.",
+        previewBody: "Un fond neutre et sans reflet : rien ne vient fausser la teinte que vous regardez.",
+        shot1: "Palette dominante", shot2: "Neuf harmonies", shot3: "Codes développeur", shot4: "Contraste WCAG",
+        noticeBody: "<strong>La lumière compte, et c'est normal.</strong><br>La couleur détectée dépend de la lumière ambiante, de la balance des blancs de votre photo et des réglages de votre écran. Le même mur paraîtra différent à l'ombre, en plein soleil ou sous une lampe chaude. Ce n'est pas un défaut de l'app : DotChroma lit fidèlement les pixels de votre image. Pour comparer à une peinture, un tissu ou un échantillon réel, échantillonnez sous une lumière stable.",
+        pricingKicker: "Tarifs", pricingTitle: "Gratuit pour l'essentiel. Un seul paiement pour le reste.",
+        pricingBody: "Pas d'abonnement, pas de compte à créer, pas de publicité.",
+        freeTitle: "Gratuit", freeSub: "10 imports d'images par mois",
+        free1: "Échantillonnage illimité sur les images chargées", free2: "Noms de couleurs dans 13 langues",
+        free3: "Palette dominante et historique", free4: "Codes HEX, RVB et TSL",
+        free5: "Contraste WCAG complet", free6: "Une harmonie de couleurs",
+        once: "une fois", proSub: "Tout le gratuit, sans limite",
+        pro1: "Imports d'images illimités", pro2: "Les neuf harmonies de couleurs",
+        pro3: "Export SwiftUI, UIKit, CSS et SCSS", pro4: "Export complet des palettes en texte ou CSV",
+        pro5: "Achat unique, restaurable sur vos appareils",
+        ipadTitle: "Aussi à l'aise sur iPad.",
+        ipadBody: "Sur grand écran, l'image et le panneau couleur cohabitent : vous échantillonnez d'un côté, vous lisez les valeurs de l'autre.",
+        supportLink: "Assistance", privacyLink: "Confidentialité", contactLink: "Nous écrire"
+      },
+      de: {
+        navFeatures: "Funktionen", navPreview: "Vorschau", navPricing: "Preise", languageLabel: "Sprache",
+        heroKicker: "Für iPhone und iPad",
+        heroTitle: "Die genaue Farbe<br><span class=\"accent\">Ihrer Fotos.</span>",
+        heroBody: "Tippen Sie auf ein beliebiges Pixel: DotChroma nennt Ihnen den Farbton, seinen Namen in Ihrer Sprache, die Entwickler-Codes und den WCAG-Kontrast. Ohne Konto, ohne Cloud, ohne Werbung.",
+        heroPrimary: "DotChroma entdecken", heroSecondary: "Funktionen ansehen",
+        trust1: "13 Sprachen", trust2: "100 % auf dem Gerät", trust3: "Einmaliger Kauf",
+        swatch1: "Tan", swatch2: "Dunkles Taupe", swatch3: "Fensterblau", swatch4: "Kastanie",
+        featuresKicker: "Eine Pipette, und alles drumherum",
+        featuresTitle: "Vom Pixel zum Code, ohne die App zu verlassen.",
+        featuresBody: "DotChroma liest eine Farbe nicht nur aus: Die App benennt sie, stellt ihre Nachbarn daneben, übersetzt sie in Code und prüft, ob sie lesbar bleibt.",
+        f1Title: "Präzises Messen", f1Body: "Foto importieren oder direkt aufnehmen, dann eine Stelle antippen. Die Lupe trifft das exakte Pixel; der geglättete Modus mittelt eine kleine Fläche und reduziert Rauschen.",
+        f2Title: "Dominante Palette", f2Body: "Die Hauptfarben eines Bildes werden automatisch extrahiert. Tippen Sie ein Feld an, um es zur aktiven Farbe zu machen.",
+        f3Title: "Passende Namen, in 13 Sprachen", f3Body: "„Taupe“, nicht „grün“. Lokalisierte xkcd-Palette oder Standard-CSS-Namen, ganz wie Sie möchten — auf Deutsch, Englisch, Französisch, Spanisch und in neun weiteren Sprachen.",
+        f4Title: "WCAG-Kontrast", f4Body: "Verhältnis auf Weiß und auf Schwarz, AA- und AAA-Konformität nach WCAG 2.1. Genug, um eine Frage der Barrierefreiheit in einer Sekunde zu klären.",
+        f5Title: "Entwickler-Codes", f5Body: "HEX, RGB, HSL, SwiftUI, UIKit, CSS und SCSS. Einen Wert mit einem Tippen kopieren oder die ganze Palette als Text oder CSV exportieren.",
+        f6Title: "Nichts verlässt Ihr Gerät", f6Body: "Kein Bild wird ins Internet gesendet. Kein Konto, keine Werbung, kein Tracker. Alles wird lokal verarbeitet.",
+        previewKicker: "Vorschau", previewTitle: "Eine dunkle Oberfläche, für Farbe gemacht.",
+        previewBody: "Ein neutraler, reflexionsfreier Hintergrund: Nichts verfälscht den Farbton, den Sie betrachten.",
+        shot1: "Dominante Palette", shot2: "Neun Harmonien", shot3: "Entwickler-Codes", shot4: "WCAG-Kontrast",
+        noticeBody: "<strong>Licht beeinflusst die Farbe — das ist normal.</strong><br>Die erkannte Farbe hängt vom Umgebungslicht, vom Weißabgleich Ihres Fotos und von Ihren Bildschirmeinstellungen ab. Dieselbe Wand wirkt im Schatten, in der Sonne oder unter warmem Lampenlicht anders. Das ist kein Fehler der App: DotChroma liest die Pixel Ihres Bildes korrekt aus. Für den Abgleich mit Farbe, Stoff oder einer echten Probe messen Sie bei gleichmäßigem Licht.",
+        pricingKicker: "Preise", pricingTitle: "Kostenlos für das Wesentliche. Einmal zahlen für den Rest.",
+        pricingBody: "Kein Abo, kein Konto, keine Werbung.",
+        freeTitle: "Kostenlos", freeSub: "10 Bildimporte pro Monat",
+        free1: "Unbegrenztes Messen auf geladenen Bildern", free2: "Farbnamen in 13 Sprachen",
+        free3: "Dominante Palette und Verlauf", free4: "HEX-, RGB- und HSL-Codes",
+        free5: "Vollständige WCAG-Kontrastprüfung", free6: "Eine Farbharmonie",
+        once: "einmalig", proSub: "Alles aus der Gratisversion, ohne Limit",
+        pro1: "Unbegrenzte Bildimporte", pro2: "Alle neun Farbharmonien",
+        pro3: "Export nach SwiftUI, UIKit, CSS und SCSS", pro4: "Vollständiger Palettenexport als Text oder CSV",
+        pro5: "Einmaliger Kauf, auf Ihren Geräten wiederherstellbar",
+        ipadTitle: "Auf dem iPad genauso angenehm.",
+        ipadBody: "Auf großem Bildschirm stehen Bild und Farbpanel nebeneinander: Sie messen auf der einen Seite und lesen die Werte auf der anderen.",
+        supportLink: "Support", privacyLink: "Datenschutz", contactLink: "Schreiben Sie uns"
+      },
+      es: {
+        navFeatures: "Funciones", navPreview: "Vista previa", navPricing: "Precios", languageLabel: "Idioma",
+        heroKicker: "Diseñada para iPhone y iPad",
+        heroTitle: "El color exacto<br><span class=\"accent\">de tus fotos.</span>",
+        heroBody: "Toca cualquier píxel: DotChroma te da su tono, su nombre en tu idioma, sus códigos para desarrollo y su contraste WCAG. Sin cuenta, sin nube, sin publicidad.",
+        heroPrimary: "Descubrir DotChroma", heroSecondary: "Ver las funciones",
+        trust1: "13 idiomas", trust2: "100 % en el dispositivo", trust3: "Compra única",
+        swatch1: "Tostado", swatch2: "Gris pardo oscuro", swatch3: "Azul ventana", swatch4: "Castaño",
+        featuresKicker: "Un cuentagotas, y todo lo que lo rodea",
+        featuresTitle: "Del píxel al código, sin salir de la app.",
+        featuresBody: "DotChroma no se limita a leer un color: lo nombra, lo rodea de sus vecinos, lo traduce a código y comprueba que siga siendo legible.",
+        f1Title: "Muestreo preciso", f1Body: "Importa una foto o tómala al momento, y luego toca un punto. La lupa apunta al píxel exacto; el modo suavizado promedia una pequeña zona para reducir el ruido.",
+        f2Title: "Paleta dominante", f2Body: "Los tonos principales de una imagen se extraen automáticamente. Toca una muestra para convertirla en el color activo.",
+        f3Title: "Nombres acertados, en 13 idiomas", f3Body: "«Gris pardo», no «verde». Paleta xkcd localizada o nombres CSS estándar, a tu elección — en español, inglés, francés, alemán y nueve idiomas más.",
+        f4Title: "Contraste WCAG", f4Body: "Ratio sobre blanco y sobre negro, conformidad AA y AAA según WCAG 2.1. Suficiente para resolver una duda de accesibilidad en un segundo.",
+        f5Title: "Códigos para desarrollo", f5Body: "HEX, RGB, HSL, SwiftUI, UIKit, CSS y SCSS. Copia un valor con un toque, o exporta toda la paleta en texto o CSV.",
+        f6Title: "Nada sale del dispositivo", f6Body: "Ninguna imagen se envía a internet. Sin cuenta, sin publicidad, sin rastreadores. Todo el procesamiento es local.",
+        previewKicker: "Vista previa", previewTitle: "Una interfaz oscura, pensada para el color.",
+        previewBody: "Un fondo neutro y sin reflejos: nada distorsiona el tono que estás mirando.",
+        shot1: "Paleta dominante", shot2: "Nueve armonías", shot3: "Códigos para desarrollo", shot4: "Contraste WCAG",
+        noticeBody: "<strong>La luz importa, y es normal.</strong><br>El color detectado depende de la luz ambiente, del balance de blancos de tu foto y de los ajustes de tu pantalla. La misma pared se ve distinta a la sombra, al sol o bajo una lámpara cálida. No es un fallo de la app: DotChroma lee los píxeles de tu imagen con fidelidad. Para comparar con una pintura, un tejido o una muestra real, muestrea con luz estable.",
+        pricingKicker: "Precios", pricingTitle: "Gratis para lo esencial. Un solo pago para el resto.",
+        pricingBody: "Sin suscripción, sin cuenta que crear, sin publicidad.",
+        freeTitle: "Gratis", freeSub: "10 importaciones de imágenes al mes",
+        free1: "Muestreo ilimitado en las imágenes cargadas", free2: "Nombres de color en 13 idiomas",
+        free3: "Paleta dominante e historial", free4: "Códigos HEX, RGB y HSL",
+        free5: "Comprobación WCAG completa", free6: "Una armonía de color",
+        once: "una vez", proSub: "Todo lo gratuito, sin límite",
+        pro1: "Importaciones de imágenes ilimitadas", pro2: "Las nueve armonías de color",
+        pro3: "Exportación a SwiftUI, UIKit, CSS y SCSS", pro4: "Exportación completa de paletas en texto o CSV",
+        pro5: "Compra única, restaurable en tus dispositivos",
+        ipadTitle: "Igual de cómoda en iPad.",
+        ipadBody: "En pantalla grande, la imagen y el panel de color conviven: muestreas por un lado y lees los valores por el otro.",
+        supportLink: "Soporte", privacyLink: "Privacidad", contactLink: "Escríbenos"
+      }
+    };
+
+    const picker = document.getElementById("language");
+
+    function applyLanguage(language) {
+      const lang = translations[language] ? language : "en";
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = translations[lang][element.dataset.i18n];
+        if (value) element.innerHTML = value;
+      });
+      picker.value = lang;
+      try { localStorage.setItem("dotchroma-language", lang); } catch (_) {}
+    }
+
+    // Premier passage : on suit la langue du navigateur plutôt que d'imposer
+    // l'anglais. Le choix explicite du visiteur prime ensuite.
+    function initialLanguage() {
+      try {
+        const enregistree = localStorage.getItem("dotchroma-language");
+        if (enregistree && translations[enregistree]) return enregistree;
+      } catch (_) {}
+      for (const balise of navigator.languages || [navigator.language || "en"]) {
+        const code = String(balise).slice(0, 2).toLowerCase();
+        if (translations[code]) return code;
+      }
+      return "en";
+    }
+
+    picker.addEventListener("change", (event) => applyLanguage(event.target.value));
+    applyLanguage(initialLanguage());
+  </script>
 
 </body>
 </html>
