@@ -110,13 +110,58 @@
     .swatch code { display: block; opacity: .8; font-size: .58rem; font-family: ui-monospace, SFMono-Regular, monospace; }
 
     /* Démonstration vidéo */
-    .video-grid { display: grid; grid-template-columns: 1fr .8fr; gap: 56px; align-items: center; }
-    .video-stage { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-    .demo-video {
-      width: 100%; max-width: 330px; border-radius: 34px;
-      border: 1px solid var(--line); box-shadow: var(--shadow); background: #000;
+    .video-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(300px, .58fr);
+      align-items: center; gap: clamp(46px, 8vw, 104px);
     }
-    .video-note { margin: 0; color: var(--muted); font-size: .86rem; text-align: center; }
+    .video-copy .actions { margin-top: 30px; }
+    .video-stage {
+      position: relative; width: min(390px, 100%); margin-inline: auto; padding: 12px;
+      border: 1px solid rgba(184, 224, 0, .22); border-radius: 42px;
+      background: linear-gradient(150deg, rgba(184, 224, 0, .10), rgba(16, 18, 16, .8));
+      box-shadow: var(--shadow);
+    }
+    .video-stage::before {
+      content: ""; position: absolute; inset: 12% -18%; z-index: -1; border-radius: 50%;
+      background: radial-gradient(circle, rgba(184, 224, 0, .18), transparent 68%);
+      filter: blur(22px);
+    }
+    .demo-video {
+      display: block; width: 100%; aspect-ratio: 9 / 16;
+      border-radius: 31px; background: #000; object-fit: cover;
+    }
+    .video-note { margin: 16px 0 0; color: var(--muted); text-align: center; font-size: .88rem; }
+
+    /* Une couleur, treize langues */
+    .langues-grid {
+      display: grid; grid-template-columns: minmax(240px, .42fr) minmax(0, 1fr);
+      gap: clamp(32px, 5vw, 64px); align-items: center;
+    }
+    .langues-echantillon {
+      border-radius: var(--radius); aspect-ratio: 4 / 3;
+      display: flex; align-items: flex-end; justify-content: center; padding: 20px;
+      box-shadow: var(--shadow); border: 1px solid rgba(255, 255, 255, .1);
+    }
+    .langues-echantillon code {
+      font-family: ui-monospace, SFMono-Regular, monospace; font-size: 1.1rem;
+      font-weight: 700; letter-spacing: .06em; color: #f6f8f0;
+      background: rgba(0, 0, 0, .34); padding: 7px 14px; border-radius: 999px;
+    }
+    .langues-liste {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px 26px;
+    }
+    .langues-liste li {
+      display: flex; align-items: baseline; gap: 12px;
+      padding-bottom: 11px; border-bottom: 1px solid var(--line);
+    }
+    .langues-liste b { font-size: 1.02rem; font-weight: 600; }
+    .langues-liste .code-langue {
+      font-size: .66rem; font-weight: 800; letter-spacing: .12em;
+      color: var(--lime); min-width: 30px;
+    }
+    .langues-liste [dir="rtl"] { direction: rtl; }
 
     .intro { max-width: 640px; margin-bottom: 46px; }
     .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); gap: 22px; }
@@ -155,7 +200,10 @@
     .footer-links a:hover { color: var(--white); }
 
     @media (max-width: 900px) {
-      .hero-grid, .video-grid { grid-template-columns: 1fr; }
+      .hero-grid, .video-grid, .langues-grid { grid-template-columns: 1fr; }
+      .langues-echantillon { aspect-ratio: 16 / 7; }
+      .video-copy { text-align: center; }
+      .video-copy .actions { justify-content: center; }
       .hero-shot-wrap { order: -1; }
       .section { padding: 72px 0; }
       .nav-links { display: none; }
@@ -174,6 +222,7 @@
       <div class="nav-right">
         <nav class="nav-links" aria-label="Main">
           <a href="#features" data-i18n="navFeatures">Features</a>
+          <a href="#languages" data-i18n="navLanguages">Languages</a>
           <a href="#preview" data-i18n="navPreview">Preview</a>
           <a href="#pricing" data-i18n="navPricing">Pricing</a>
         </nav>
@@ -229,17 +278,49 @@
             <a class="btn btn-primary" href="#pricing" data-i18n="demoCta">See what it costs</a>
           </div>
         </div>
-        <div class="video-stage">
-          <video class="demo-video" controls playsinline preload="metadata"
-                 poster="assets/video-poster.png" aria-label="DotChroma demonstration video">
-            <source src="assets/dotchroma-demo.mp4" type="video/mp4">
-          </video>
+        <div>
+          <div class="video-stage">
+            <video class="demo-video" controls playsinline preload="metadata"
+                   poster="assets/video-poster.png" aria-label="DotChroma demonstration video">
+              <source src="assets/dotchroma-demo.mp4" type="video/mp4">
+            </video>
+          </div>
           <p class="video-note" data-i18n="demoNote">Turn the sound on for the original music.</p>
         </div>
       </div>
     </section>
 
-    <section class="section section-soft" id="features">
+    <section class="section section-soft" id="languages">
+      <div class="shell">
+        <div class="intro">
+          <p class="kicker" data-i18n="langKicker">13 languages</p>
+          <h2 data-i18n="langTitle">One colour, named in your language.</h2>
+          <p class="sub" data-i18n="langBody">This is the exact blue sampled on the vase in the video. DotChroma names it from a localized xkcd palette — not a machine translation made for this page, but the very words the app shows you.</p>
+        </div>
+        <div class="langues-grid">
+          <div class="langues-echantillon" style="background:#3D7E94">
+            <code>#3D7E94</code>
+          </div>
+          <ul class="langues-liste">
+            <li><span class="code-langue">EN</span><b>Dirty Blue</b></li>
+            <li><span class="code-langue">FR</span><b>bleu sale</b></li>
+            <li><span class="code-langue">DE</span><b>Schmutziges Blau</b></li>
+            <li><span class="code-langue">ES</span><b>azul sucio</b></li>
+            <li><span class="code-langue">PT</span><b>Azul Sujo</b></li>
+            <li><span class="code-langue">IT</span><b>Blu sporco</b></li>
+            <li><span class="code-langue">RU</span><b>Грязный синий</b></li>
+            <li><span class="code-langue">JA</span><b>ダーティーブルー</b></li>
+            <li><span class="code-langue">KO</span><b>더티 블루</b></li>
+            <li><span class="code-langue">ZH</span><b>脏蓝</b></li>
+            <li><span class="code-langue">HI</span><b>गंदा नीला</b></li>
+            <li><span class="code-langue">AR</span><b dir="rtl">الأزرق القذر</b></li>
+            <li><span class="code-langue">FA</span><b dir="rtl">آبی کثیف</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
       <div class="shell">
         <div class="intro">
           <p class="kicker" data-i18n="featuresKicker">One eyedropper, all the work around it</p>
@@ -281,7 +362,7 @@
       </div>
     </section>
 
-    <section class="section" id="preview">
+    <section class="section section-soft" id="preview">
       <div class="shell">
         <div class="intro">
           <p class="kicker" data-i18n="previewKicker">Preview</p>
@@ -309,7 +390,7 @@
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section class="section">
       <div class="shell">
         <div class="notice">
           <div class="icon">💡</div>
@@ -318,7 +399,7 @@
       </div>
     </section>
 
-    <section class="section" id="pricing">
+    <section class="section section-soft" id="pricing">
       <div class="shell">
         <div class="intro">
           <p class="kicker" data-i18n="pricingKicker">Pricing</p>
@@ -355,7 +436,7 @@
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section class="section">
       <div class="shell" style="text-align:center">
         <h2 data-i18n="ipadTitle">Just as comfortable on iPad.</h2>
         <p class="sub" style="margin-inline:auto;max-width:52ch" data-i18n="ipadBody">On a large screen the image and the color panel sit side by side: you sample on one side and read the values on the other.</p>
@@ -415,6 +496,9 @@
         demoKicker: "DotChroma in action", demoTitle: "The whole workflow in 45 seconds.",
         demoBody: "Filmed in the app, at real speed: shoot a subject, sample its colours, zoom to 500%, read the codes and check the contrast.",
         demoCta: "See what it costs", demoNote: "Turn the sound on for the original music.",
+        navLanguages: "Languages",
+        langKicker: "13 languages", langTitle: "One colour, named in your language.",
+        langBody: "This is the exact blue sampled on the vase in the video. DotChroma names it from a localized xkcd palette — not a machine translation made for this page, but the very words the app shows you.",
         supportLink: "Support", privacyLink: "Privacy", contactLink: "Contact us"
       },
       fr: {
@@ -453,6 +537,9 @@
         demoKicker: "DotChroma en action", demoTitle: "Tout le parcours en 45 secondes.",
         demoBody: "Filmé dans l'app, à vitesse réelle : photographiez un sujet, échantillonnez ses couleurs, zoomez à 500 %, lisez les codes et vérifiez le contraste.",
         demoCta: "Voir les tarifs", demoNote: "Activez le son pour écouter la musique originale.",
+        navLanguages: "Langues",
+        langKicker: "13 langues", langTitle: "Une couleur, nommée dans votre langue.",
+        langBody: "C'est le bleu exact échantillonné sur le vase dans la vidéo. DotChroma le nomme depuis une palette xkcd localisée — pas une traduction faite pour cette page, mais les mots que l'app vous affiche.",
         supportLink: "Assistance", privacyLink: "Confidentialité", contactLink: "Nous écrire"
       },
       de: {
@@ -491,6 +578,9 @@
         demoKicker: "DotChroma in Aktion", demoTitle: "Der ganze Ablauf in 45 Sekunden.",
         demoBody: "In der App gefilmt, in Echtzeit: ein Motiv aufnehmen, Farben messen, auf 500 % zoomen, Codes ablesen und den Kontrast prüfen.",
         demoCta: "Preise ansehen", demoNote: "Ton einschalten für die Originalmusik.",
+        navLanguages: "Sprachen",
+        langKicker: "13 Sprachen", langTitle: "Eine Farbe, in Ihrer Sprache benannt.",
+        langBody: "Genau das Blau, das im Video auf der Vase gemessen wird. DotChroma benennt es aus einer lokalisierten xkcd-Palette — keine Übersetzung für diese Seite, sondern die Wörter, die die App anzeigt.",
         supportLink: "Support", privacyLink: "Datenschutz", contactLink: "Schreiben Sie uns"
       },
       es: {
@@ -529,6 +619,9 @@
         demoKicker: "DotChroma en acción", demoTitle: "Todo el recorrido en 45 segundos.",
         demoBody: "Grabado en la app, a velocidad real: fotografía un objeto, muestrea sus colores, amplía al 500 %, lee los códigos y comprueba el contraste.",
         demoCta: "Ver los precios", demoNote: "Activa el sonido para escuchar la música original.",
+        navLanguages: "Idiomas",
+        langKicker: "13 idiomas", langTitle: "Un color, con nombre en tu idioma.",
+        langBody: "Es el azul exacto muestreado en el jarrón del vídeo. DotChroma lo nombra desde una paleta xkcd localizada: no es una traducción hecha para esta página, sino las palabras que muestra la app.",
         supportLink: "Soporte", privacyLink: "Privacidad", contactLink: "Escríbenos"
       }
     };
