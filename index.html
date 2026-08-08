@@ -109,6 +109,15 @@
     .swatch { width: 74px; border-radius: 14px; padding: 9px 4px 8px; text-align: center; font-size: .64rem; font-weight: 700; letter-spacing: .03em; }
     .swatch code { display: block; opacity: .8; font-size: .58rem; font-family: ui-monospace, SFMono-Regular, monospace; }
 
+    /* Démonstration vidéo */
+    .video-grid { display: grid; grid-template-columns: 1fr .8fr; gap: 56px; align-items: center; }
+    .video-stage { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .demo-video {
+      width: 100%; max-width: 330px; border-radius: 34px;
+      border: 1px solid var(--line); box-shadow: var(--shadow); background: #000;
+    }
+    .video-note { margin: 0; color: var(--muted); font-size: .86rem; text-align: center; }
+
     .intro { max-width: 640px; margin-bottom: 46px; }
     .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(272px, 1fr)); gap: 22px; }
     .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; }
@@ -146,7 +155,7 @@
     .footer-links a:hover { color: var(--white); }
 
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
+      .hero-grid, .video-grid { grid-template-columns: 1fr; }
       .hero-shot-wrap { order: -1; }
       .section { padding: 72px 0; }
       .nav-links { display: none; }
@@ -206,6 +215,26 @@
         </div>
         <div class="hero-shot-wrap">
           <img class="marketing-shot" src="assets/capture-hero.png" alt="DotChroma on iPhone" width="330" height="717">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="demo-title">
+      <div class="shell video-grid">
+        <div class="video-copy">
+          <p class="kicker" data-i18n="demoKicker">DotChroma in action</p>
+          <h2 id="demo-title" data-i18n="demoTitle">The whole workflow in 43 seconds.</h2>
+          <p class="sub" data-i18n="demoBody">Filmed in the app, at real speed: shoot a subject, sample its colours, zoom to 500%, read the codes and check the contrast.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#pricing" data-i18n="demoCta">See what it costs</a>
+          </div>
+        </div>
+        <div class="video-stage">
+          <video class="demo-video" controls playsinline preload="metadata"
+                 poster="assets/video-poster.png" aria-label="DotChroma demonstration video">
+            <source src="assets/dotchroma-demo.mp4" type="video/mp4">
+          </video>
+          <p class="video-note" data-i18n="demoNote">Turn the sound on for the original music.</p>
         </div>
       </div>
     </section>
@@ -383,6 +412,9 @@
         pro5: "One-time purchase, restorable on your devices",
         ipadTitle: "Just as comfortable on iPad.",
         ipadBody: "On a large screen the image and the color panel sit side by side: you sample on one side and read the values on the other.",
+        demoKicker: "DotChroma in action", demoTitle: "The whole workflow in 43 seconds.",
+        demoBody: "Filmed in the app, at real speed: shoot a subject, sample its colours, zoom to 500%, read the codes and check the contrast.",
+        demoCta: "See what it costs", demoNote: "Turn the sound on for the original music.",
         supportLink: "Support", privacyLink: "Privacy", contactLink: "Contact us"
       },
       fr: {
@@ -418,6 +450,9 @@
         pro5: "Achat unique, restaurable sur vos appareils",
         ipadTitle: "Aussi à l'aise sur iPad.",
         ipadBody: "Sur grand écran, l'image et le panneau couleur cohabitent : vous échantillonnez d'un côté, vous lisez les valeurs de l'autre.",
+        demoKicker: "DotChroma en action", demoTitle: "Tout le parcours en 43 secondes.",
+        demoBody: "Filmé dans l'app, à vitesse réelle : photographiez un sujet, échantillonnez ses couleurs, zoomez à 500 %, lisez les codes et vérifiez le contraste.",
+        demoCta: "Voir les tarifs", demoNote: "Activez le son pour écouter la musique originale.",
         supportLink: "Assistance", privacyLink: "Confidentialité", contactLink: "Nous écrire"
       },
       de: {
@@ -453,6 +488,9 @@
         pro5: "Einmaliger Kauf, auf Ihren Geräten wiederherstellbar",
         ipadTitle: "Auf dem iPad genauso angenehm.",
         ipadBody: "Auf großem Bildschirm stehen Bild und Farbpanel nebeneinander: Sie messen auf der einen Seite und lesen die Werte auf der anderen.",
+        demoKicker: "DotChroma in Aktion", demoTitle: "Der ganze Ablauf in 43 Sekunden.",
+        demoBody: "In der App gefilmt, in Echtzeit: ein Motiv aufnehmen, Farben messen, auf 500 % zoomen, Codes ablesen und den Kontrast prüfen.",
+        demoCta: "Preise ansehen", demoNote: "Ton einschalten für die Originalmusik.",
         supportLink: "Support", privacyLink: "Datenschutz", contactLink: "Schreiben Sie uns"
       },
       es: {
@@ -488,6 +526,9 @@
         pro5: "Compra única, restaurable en tus dispositivos",
         ipadTitle: "Igual de cómoda en iPad.",
         ipadBody: "En pantalla grande, la imagen y el panel de color conviven: muestreas por un lado y lees los valores por el otro.",
+        demoKicker: "DotChroma en acción", demoTitle: "Todo el recorrido en 43 segundos.",
+        demoBody: "Grabado en la app, a velocidad real: fotografía un objeto, muestrea sus colores, amplía al 500 %, lee los códigos y comprueba el contraste.",
+        demoCta: "Ver los precios", demoNote: "Activa el sonido para escuchar la música original.",
         supportLink: "Soporte", privacyLink: "Privacidad", contactLink: "Escríbenos"
       }
     };
