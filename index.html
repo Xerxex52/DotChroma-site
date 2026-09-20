@@ -94,6 +94,16 @@
     .btn:hover { transform: translateY(-2px); }
     .btn-primary { background: var(--lime); color: #0a0a0a; }
     .btn-secondary { border: 1px solid var(--line); color: var(--white); }
+    .btn-appstore {
+      gap: 12px; padding: 9px 22px 9px 18px; border-radius: 14px;
+      background: #000; color: #fff; border: 1px solid #a6a6a6; text-align: left;
+    }
+    .btn-appstore svg { width: 28px; height: 28px; flex: none; fill: currentColor; }
+    .btn-appstore .store-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .btn-appstore small { font-size: .7rem; font-weight: 500; letter-spacing: .01em; }
+    .btn-appstore strong { font-size: 1.32rem; font-weight: 600; letter-spacing: -.01em; }
+    .btn-appstore:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    .store-row { margin-top: 44px; display: flex; justify-content: center; }
 
     .hero { position: relative; isolation: isolate; overflow: hidden; padding: 88px 0 76px; }
     .hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; }
@@ -267,7 +277,10 @@
           <h1 data-i18n="heroTitle">The exact color<br><span class="accent">in your photos.</span></h1>
           <p class="lead" data-i18n="heroBody">Tap any pixel: DotChroma gives you its shade, its name in your language, its developer codes and its WCAG contrast. No account, no cloud, no ads.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#pricing" data-i18n="heroPrimary">Discover DotChroma</a>
+            <a class="btn btn-appstore" href="https://apps.apple.com/fr/app/dotchroma/id6799248497" target="_blank" rel="noopener" aria-label="DotChroma, App Store">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span class="store-text"><small data-i18n="storeSmall">Download on the</small><strong>App Store</strong></span>
+            </a>
             <a class="btn btn-secondary" href="#features" data-i18n="heroSecondary">See the features</a>
           </div>
           <ul class="proof">
@@ -295,7 +308,11 @@
           <h2 id="demo-title" data-i18n="demoTitle">The whole workflow in 45 seconds.</h2>
           <p class="sub" data-i18n="demoBody">Filmed in the app, at real speed: shoot a subject, sample its colours, zoom to 500%, read the codes and check the contrast.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#pricing" data-i18n="demoCta">See what it costs</a>
+            <a class="btn btn-appstore" href="https://apps.apple.com/fr/app/dotchroma/id6799248497" target="_blank" rel="noopener" aria-label="DotChroma, App Store">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span class="store-text"><small data-i18n="storeSmall">Download on the</small><strong>App Store</strong></span>
+            </a>
+            <a class="btn btn-secondary" href="#pricing" data-i18n="demoCta">See what it costs</a>
           </div>
         </div>
         <div>
@@ -453,6 +470,12 @@
             </ul>
           </article>
         </div>
+        <div class="store-row">
+          <a class="btn btn-appstore" href="https://apps.apple.com/fr/app/dotchroma/id6799248497" target="_blank" rel="noopener" aria-label="DotChroma, App Store">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            <span class="store-text"><small data-i18n="storeSmall">Download on the</small><strong>App Store</strong></span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -485,6 +508,7 @@
         heroKicker: "Made for iPhone and iPad",
         heroTitle: "The exact color<br><span class=\"accent\">in your photos.</span>",
         heroBody: "Tap any pixel: DotChroma gives you its shade, its name in your language, its developer codes and its WCAG contrast. No account, no cloud, no ads.",
+        storeSmall: "Download on the",
         heroPrimary: "Discover DotChroma", heroSecondary: "See the features",
         trust1: "13 languages", trust2: "100% on device", trust3: "One-time purchase",
         swatch1: "Tan", swatch2: "Dark Taupe", swatch3: "Windows Blue", swatch4: "Chestnut",
@@ -526,6 +550,7 @@
         heroKicker: "Conçue pour iPhone et iPad",
         heroTitle: "La couleur exacte<br><span class=\"accent\">de vos photos.</span>",
         heroBody: "Touchez n'importe quel pixel : DotChroma vous donne sa teinte, son nom dans votre langue, ses codes développeur et son contraste WCAG. Sans compte, sans cloud, sans publicité.",
+        storeSmall: "Télécharger dans l'",
         heroPrimary: "Découvrir DotChroma", heroSecondary: "Voir les fonctionnalités",
         trust1: "13 langues", trust2: "100 % sur l'appareil", trust3: "Achat unique",
         swatch1: "Tan", swatch2: "Taupe Foncé", swatch3: "Fenêtres bleues", swatch4: "Châtaigne",
@@ -567,6 +592,7 @@
         heroKicker: "Für iPhone und iPad",
         heroTitle: "Die genaue Farbe<br><span class=\"accent\">Ihrer Fotos.</span>",
         heroBody: "Tippen Sie auf ein beliebiges Pixel: DotChroma nennt Ihnen den Farbton, seinen Namen in Ihrer Sprache, die Entwickler-Codes und den WCAG-Kontrast. Ohne Konto, ohne Cloud, ohne Werbung.",
+        storeSmall: "Laden im",
         heroPrimary: "DotChroma entdecken", heroSecondary: "Funktionen ansehen",
         trust1: "13 Sprachen", trust2: "100 % auf dem Gerät", trust3: "Einmaliger Kauf",
         swatch1: "Tan", swatch2: "Dunkles Taupe", swatch3: "Fensterblau", swatch4: "Kastanie",
@@ -608,6 +634,7 @@
         heroKicker: "Diseñada para iPhone y iPad",
         heroTitle: "El color exacto<br><span class=\"accent\">de tus fotos.</span>",
         heroBody: "Toca cualquier píxel: DotChroma te da su tono, su nombre en tu idioma, sus códigos para desarrollo y su contraste WCAG. Sin cuenta, sin nube, sin publicidad.",
+        storeSmall: "Descárgalo en el",
         heroPrimary: "Descubrir DotChroma", heroSecondary: "Ver las funciones",
         trust1: "13 idiomas", trust2: "100 % en el dispositivo", trust3: "Compra única",
         swatch1: "Tostado", swatch2: "Gris pardo oscuro", swatch3: "Azul ventana", swatch4: "Castaño",
